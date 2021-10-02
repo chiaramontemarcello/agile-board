@@ -1,0 +1,15 @@
+<div
+  class="task"
+  (coordinates)="logCoords($event)"
+  [clientId]="clientId"
+  [positionUpdate]="position"
+  appDraggable
+>
+  I'm a draggable task
+</div>
+
+<div class="dropzone-wrapper">
+  <div class="dropzone" appDroppable></div>
+  <div class="dropzone" appDroppable></div>
+  <div class="dropzone" appDroppable></div>
+</div>
