@@ -12,7 +12,11 @@ import { KanbanComponent } from './components/kanban/kanban.component';
 import { FormsModule } from '@angular/forms';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 // const config: SocketIoConfig = { url: 'http://localhost:4200', options: {} };
 const config: SocketIoConfig = { url: '', options: {} };
 
@@ -28,6 +32,11 @@ const config: SocketIoConfig = { url: '', options: {} };
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    MatIconModule,
     SocketIoModule.forRoot(config),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

@@ -25,7 +25,7 @@ export class DroppableDirective implements OnInit {
       .dropzone(Object.assign({}, this.options || {}))
       .on('dropactivate', (event) => event.target.classList.add('can-drop'))
       .on('dragenter', (event) => {
-        console.log('drag enter');
+        // console.log('drag enter');
 
         const draggableElement = event.relatedTarget;
         const dropzoneElement = event.target;
@@ -34,18 +34,18 @@ export class DroppableDirective implements OnInit {
         draggableElement.classList.add('drop-me');
       })
       .on('dragleave', (event) => {
-        console.log('drag leave');
+        // console.log('drag leave');
         event.target.classList.remove('can-catch', 'caught-it');
         event.relatedTarget.classList.remove('drop-me');
       })
       .on('drop', (event) => {
         const model = (window as any).dragData;
 
-        console.log('drag drop');
-
         if (typeof model === 'object') {
           this.dropping.emit(model);
         }
+
+        // this.dropping.emit(model);
         event.target.classList.add('caught-it');
 
         if ((window as any).document.selection) {

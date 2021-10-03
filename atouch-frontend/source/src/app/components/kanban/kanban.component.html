@@ -1,15 +1,34 @@
-<button (click)="createTask()">Create new task</button>
+<mat-toolbar>
+  <button mat-raised-button (click)="createTask()">
+    <mat-icon>add</mat-icon>
+    Create new task
+  </button>
+  <span class="example-spacer"></span>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+  >
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
 
 <div class="dropzone-wrapper">
-  <ng-container *ngFor="let item of status | keyvalue">
-    <div class="dropzone" appDroppable>
-      {{ item.key }}
-      <ng-container *ngFor="let task of item.value">
+  <ng-container *ngFor="let item of dropzones">
+    <div
+      class="dropzone"
+      appDroppable
+      [options]="{ accept: '.task' }"
+      (dropping)="assignTask($event, item)"
+    >
+      {{ item.name }}
+      <ng-container *ngFor="let task of item.tasks">
         <div
           class="task"
-          (coordinates)="logCoords($event)"
           [clientId]="clientId"
-          [positionUpdate]="position"
+          [objectId]="task.uuid"
+          [model]="task"
+          [viewportDimentions]="viewPortDim"
           appDraggable
         >
           {{ task.title }}

@@ -1,3 +1,3 @@
-source ./bin/activate
+source ./source/bin/activate
 
-pip install -r ./requirements.txt
+pip install -r ./source/requirements.txt

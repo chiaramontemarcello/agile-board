@@ -3,7 +3,7 @@ version: "3.7"
 services:
 
 ##################  DATABASE  #########################
-  database:
+  postgres_agile:
     image: postgres
     restart: always
     ports:
@@ -14,34 +14,34 @@ services:
       # - db-data:/var/lib/postgresql/data/
 
   angular-frontend:
-    image: local/frontend:latest
+    image: ghcr.io/chiaramontemarcello/agile-board/frontend:latest
     build:
       context: ./atouch-frontend
       dockerfile: Dockerfile
 
   backend-rest:
-    image: local/backend-rest:latest
+    image: ghcr.io/chiaramontemarcello/agile-board/backend-agile-rest:latest
     restart: always
     build:
       context: ./backend
       dockerfile: Dockerfile
 
   backend-websocket:
-    image: local/backend-websocket:latest
+    image: ghcr.io/chiaramontemarcello/agile-board/backend-rest-websockets:latest
     restart: always
     build:
       context: ./websockets
       dockerfile: Dockerfile
 
-  reverse-proxy:
-    restart: always
-    image: local/reverse-proxy
-    restart: always
-    build:
-      context: ./reverse-proxy
-      dockerfile: Dockerfile
-    ports:
-      - 80:80
+  # reverse-proxy:
+  #   restart: always
+  #   image: local/reverse-proxy
+  #   restart: always
+  #   build:
+  #     context: ./reverse-proxy
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 80:80
 
   adminer:
     image: adminer

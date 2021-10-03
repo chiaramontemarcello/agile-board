@@ -6,7 +6,7 @@ class DatabaseConnection:
         self.db_name = "demo"
         self.db_user="postgres"
         self.db_password="postgres"
-        self.db_host="database"
+        self.db_host="localhost"
         self.Task = None
         self.create_db()
 

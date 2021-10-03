@@ -1,3 +1,3 @@
-source ./bin/activate
+source ./source/bin/activate
 
-python3 ./app.py
+python3 ./source/src/app.py

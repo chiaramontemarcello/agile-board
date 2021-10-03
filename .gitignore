@@ -10,3 +10,9 @@ backend/source/bin/
 backend/source/lib/
 
 backend/source/share/
+
+websockets/source/bin/
+
+websockets/source/lib/
+
+websockets/source/share/
