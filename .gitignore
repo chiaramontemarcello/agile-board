@@ -4,3 +4,9 @@ backend/lib/
 backend/share/
 
 backend/bin/
+
+backend/source/bin/
+
+backend/source/lib/
+
+backend/source/share/

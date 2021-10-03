@@ -1,0 +1,15 @@
+{
+  "/socket.io/*": {
+    "target": "http://localhost:80",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "ws": true
+  },
+  "/api/v1/*": {
+    "target": "http://localhost:80",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

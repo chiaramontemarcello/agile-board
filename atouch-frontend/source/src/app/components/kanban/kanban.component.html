@@ -1,0 +1,28 @@
+<button (click)="createTask()">Create new task</button>
+
+<div class="dropzone-wrapper">
+  <ng-container *ngFor="let item of status | keyvalue">
+    <div class="dropzone" appDroppable>
+      {{ item.key }}
+      <ng-container *ngFor="let task of item.value">
+        <div
+          class="task"
+          (coordinates)="logCoords($event)"
+          [clientId]="clientId"
+          [positionUpdate]="position"
+          appDraggable
+        >
+          {{ task.title }}
+          {{ task.status }}
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>
+
+<!--
+<div class="dropzone-wrapper">
+  <div class="dropzone" appDroppable></div>
+  <div class="dropzone" appDroppable></div>
+  <div class="dropzone" appDroppable></div>
+</div> -->
