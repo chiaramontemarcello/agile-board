@@ -1,3 +1,4 @@
+from flask.json import jsonify
 from peewee import PostgresqlDatabase, TextField, IntegerField, SQL, Model, CharField
 import uuid
 
@@ -6,7 +7,7 @@ class DatabaseConnection:
         self.db_name = "demo"
         self.db_user="postgres"
         self.db_password="postgres"
-        self.db_host="localhost"
+        self.db_host="postgres_agile"
         self.Task = None
         self.create_db()
 
@@ -43,4 +44,9 @@ class DatabaseConnection:
 
     def read_all(self, args):
         return list(self.Task.select().dicts())
+
+    def delete(self, taskDTO):
+        obj=self.Task.get(self.Task.uuid==taskDTO['uuid'])
+        obj.delete_instance()
+        return {"status":"OK"}
 

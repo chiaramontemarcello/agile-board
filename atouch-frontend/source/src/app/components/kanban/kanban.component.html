@@ -4,13 +4,13 @@
     Create new task
   </button>
   <span class="example-spacer"></span>
-  <button
+  <!-- <button
     mat-icon-button
     class="example-icon"
     aria-label="Example icon-button with share icon"
   >
     <mat-icon>share</mat-icon>
-  </button>
+  </button> -->
 </mat-toolbar>
 
 <div class="dropzone-wrapper">
@@ -21,7 +21,12 @@
       [options]="{ accept: '.task' }"
       (dropping)="assignTask($event, item)"
     >
-      {{ item.name }}
+      <div>
+        <h3>
+          {{ item.name }}
+        </h3>
+      </div>
+
       <ng-container *ngFor="let task of item.tasks">
         <div
           class="task"
@@ -30,9 +35,11 @@
           [model]="task"
           [viewportDimentions]="viewPortDim"
           appDraggable
+          (draggableClick)="openDetail(task)"
         >
-          {{ task.title }}
-          {{ task.status }}
+          <mat-card>
+            {{ task.title }}
+          </mat-card>
         </div>
       </ng-container>
     </div>

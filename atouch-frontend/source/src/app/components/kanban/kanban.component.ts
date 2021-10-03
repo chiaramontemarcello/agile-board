@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Socket } from 'ngx-socket-io';
 import { Observable, of } from 'rxjs';
 import { Task } from 'src/app/model/task';
@@ -6,6 +7,7 @@ import { TaskService } from 'src/app/services/task.service';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { Coordinate } from 'src/app/shared/draggable.directive';
 import { v4 as uuidv4 } from 'uuid';
+import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
 
 export interface PositionUpdate {
   coordinates: Coordinate;
@@ -50,7 +52,8 @@ export class KanbanComponent implements OnInit {
   constructor(
     private socket: Socket,
     private taskService: TaskService,
-    private webSocketService: WebsocketService
+    private webSocketService: WebsocketService,
+    public dialog: MatDialog
   ) {
     this.clientId = uuidv4();
   }
@@ -61,6 +64,14 @@ export class KanbanComponent implements OnInit {
 
     this.getAllTasks();
     this.subscribeToWebSocketChanges();
+  }
+
+  openDetail(task: Task) {
+    const dialogRef = this.dialog.open(TaskDialogComponent, { data: task });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   objectDropped(item: any) {
@@ -81,13 +92,21 @@ export class KanbanComponent implements OnInit {
   subscribeToWebSocketChanges() {
     this.webSocketService.taskUpdate.subscribe((task: Task) => {
       console.log(task);
-      if (task) {
+      if (task && task.status) {
         this.taskToUpdate = task.uuid;
         const indexOfTask = this.dropzones[task.status].tasks.findIndex((t) => {
           t.uuid === task.uuid;
         });
         this.dropzones[task.status].tasks.splice(indexOfTask, 1);
-        this.getAllTasks();
+      }
+      this.getAllTasks();
+    });
+
+    this.webSocketService.updateView.subscribe((message) => {
+      if (message) {
+        if (message.action === 'reload_all_tasks') {
+          this.getAllTasks();
+        }
       }
     });
   }

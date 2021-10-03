@@ -21,4 +21,10 @@ export class TaskService {
   update(taskDTO: Task): Observable<Task> {
     return this.http.put<Task>(environment.apiEndpoint + 'tasks', taskDTO);
   }
+
+  delete(task: Task): Observable<Task> {
+    return this.http.delete<Task>(environment.apiEndpoint + 'tasks', {
+      body: task,
+    });
+  }
 }

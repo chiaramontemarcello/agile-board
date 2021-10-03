@@ -1,0 +1,12 @@
+<mat-card>
+  <mat-form-field appearance="fill">
+    <mat-label>Title</mat-label>
+    <input [(ngModel)]="data.title" matInput />
+  </mat-form-field>
+  <div>
+    <button mat-icon-button (click)="save()"><mat-icon>save</mat-icon></button>
+    <button mat-icon-button (click)="delete()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</mat-card>

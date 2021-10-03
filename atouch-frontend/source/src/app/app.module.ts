@@ -17,6 +17,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { TaskDialogComponent } from './components/task-dialog/task-dialog.component';
+
 // const config: SocketIoConfig = { url: 'http://localhost:4200', options: {} };
 const config: SocketIoConfig = { url: '', options: {} };
 
@@ -26,6 +30,7 @@ const config: SocketIoConfig = { url: '', options: {} };
     DraggableDirective,
     DroppableDirective,
     KanbanComponent,
+    TaskDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +42,8 @@ const config: SocketIoConfig = { url: '', options: {} };
     MatButtonModule,
     MatInputModule,
     MatIconModule,
+    MatCardModule,
+    MatDialogModule,
     SocketIoModule.forRoot(config),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

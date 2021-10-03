@@ -35,4 +35,11 @@ export class WebsocketService {
       objectId: objectId,
     });
   }
+
+  reloadAllTasks() {
+    this.socket.emit('updateView', {
+      action: 'reload_all_tasks',
+      objectId: '',
+    });
+  }
 }
